@@ -57,6 +57,7 @@
   "dependencies": {
     "expo-print": "^15.0.8",
     "expo-sharing": "^14.0.8",
-    "react-native-iap": "14.7.20"
+    "react-native-iap": "14.7.20",
+    "react-native-nitro-modules": "^0.35.0"
   }
 }
