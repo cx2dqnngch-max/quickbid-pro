@@ -1,0 +1,56 @@
+We successfully got the iOS app into TestFlight, but the installed TestFlight build of QuickBid Pro fails immediately on launch.
+
+Current behavior:
+- App appears in TestFlight and installs successfully
+- When I tap Open, the app shows:
+  “Something went wrong”
+  “Please reload the app to continue.”
+- Tapping “Try Again” does not resolve it
+
+This means the problem is in the production iOS build, not App Store Connect or TestFlight.
+
+Please diagnose and fix the launch/runtime failure in the TestFlight build. I need you to:
+
+1. Audit startup code
+- Inspect everything that runs on app launch before the main screen renders
+- Check app initialization, auth bootstrap, navigation container setup, providers, storage reads, remote config, splash/loading logic, and error boundaries
+- Identify any unhandled exceptions that would cause the app to fall into a generic “Something went wrong / reload” state
+
+2. Check for production-only issues
+- Look for any code that works in development/preview but breaks in release/TestFlight
+- Remove or guard any dev-only modules, hot reload assumptions, debug helpers, or local-only imports
+- Make sure all environment variables and secrets required by the app exist in the production iOS build
+- Verify API base URLs, Supabase/Firebase config, storage buckets, and auth settings are correctly injected for release builds
+
+3. Add logging and error visibility
+- Add robust startup logging around each initialization step
+- Capture the exact error being thrown on launch
+- Improve the current generic error screen so it logs the actual failure source
+- If there is a global error boundary, make sure it records stack traces for startup failures
+
+4. Verify navigation/auth flow
+- Make sure initial route resolution cannot crash when user/session/company/profile data is missing
+- Add null/undefined guards for all startup state reads
+- Prevent blank or failed renders caused by missing async data
+
+5. Verify iOS release compatibility
+- Check that all native modules and packages used are compatible with iOS release/TestFlight builds
+- Confirm there are no missing permissions, plist values, or build-time config values causing startup failure
+- Check for any asset, font, icon, or storage initialization issue that could fail only in production
+
+6. Produce a fix and new build
+- Implement the required code fixes
+- Test the app in a release-like configuration, not just dev preview
+- Create a new iOS build for TestFlight
+- Increment the build number/version as needed
+
+7. Report back clearly
+When done, tell me:
+- the root cause
+- the exact files changed
+- what was fixed
+- why it only appeared in TestFlight/release
+- what version/build number I should upload next
+
+Priority:
+I do not want cosmetic changes right now. Focus only on fixing the launch failure so the app opens reliably from TestFlight on iPhone.

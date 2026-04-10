@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "QuickBid Pro",
+    "slug": "quickbid-pro",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "quickbid-pro",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1a56db"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.quickbidpro.app",
+      "buildNumber": "4",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "QuickBid Pro does not use your photo library.",
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleLocalizations": [
+          "en"
+        ],
+        "CFBundleDevelopmentRegion": "en"
+      }
+    },
+    "android": {
+      "package": "com.quickbidpro.app"
+    },
+    "web": {
+      "favicon": "./assets/images/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "649e8df7-7044-4b25-9fb0-35ebf9200748"
+      }
+    },
+    "owner": "aspag"
+  }
+}

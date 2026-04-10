@@ -1,0 +1,56 @@
+The current TestFlight build opens correctly, but there is a functional bug in the estimate/invoice creation flow.
+
+Problem:
+- In QuickBid Pro, when I tap “New Estimate” or “New Invoice,” the form opens normally
+- The “Save” button in the top-right appears visible and enabled
+- But tapping “Save” does nothing
+- There is no success message, no error message, no loading state, and no saved record appears
+
+I need you to diagnose and fix the Save action for both New Estimate and New Invoice.
+
+Please do the following:
+
+1. Audit the Save button wiring
+- Check whether the Save button is correctly connected to the submit/save handler
+- Verify the iOS press event is actually firing
+- Confirm the header/modal Save button is not blocked by layering, touch handling, stale closures, or navigation/modal issues
+
+2. Inspect form submission logic
+- Check the full save flow for both Estimate and Invoice creation
+- Verify the handler executes when Save is tapped
+- Confirm the save function reaches the database/API write step
+- Confirm success navigation or state reset is triggered after a successful save
+
+3. Inspect validation
+- Identify all required fields for saving an estimate or invoice
+- If validation is failing, show clear inline or toast error messages explaining exactly what is missing
+- Do not allow silent failure
+- Make sure default/pre-filled values are valid in production/TestFlight
+
+4. Check shared logic
+- If Estimate and Invoice use shared creation components or hooks, inspect the shared save logic first
+- Fix the root cause in one place if both screens depend on the same code path
+
+5. Add instrumentation and visible feedback
+- Add console/log output around the Save button tap, validation result, submit handler start, database write result, and final success/failure state
+- Add a visible loading state on Save while submission is in progress
+- Add a visible success message or route change after save completes
+- Add a visible error message if save fails for any reason
+
+6. Verify persistence
+- Confirm that after tapping Save, a new estimate or invoice record is actually written and can be seen in History or the relevant list
+- If there is a backend/database issue, fix the write path and report the exact cause
+
+7. Verify iOS/TestFlight behavior
+- Test this in a release-like iOS build, not only in preview/dev mode
+- Confirm the Save action works in the TestFlight-targeted build
+
+8. Report back clearly
+When done, tell me:
+- root cause
+- exact files changed
+- whether the issue was button wiring, validation, navigation, or database write failure
+- how you verified that Save now works for both Estimate and New Invoice
+
+Important:
+Do not make unrelated UI changes right now. Focus only on making the Save button work reliably for both estimate and invoice creation, with visible feedback and no silent failure.

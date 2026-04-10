@@ -1,0 +1,243 @@
+Build a production-ready native iPhone app for solo home-service business owners. The app must be simple, fast, and App Store-safe with minimal compliance risk.
+
+APP CONCEPT
+Create an app called "QuickBid Pro" for one-person home-service businesses to generate estimates and invoices from their phone in under 60 seconds.
+
+PRIMARY TARGET USER
+Solo operators such as:
+- pressure washers
+- handymen
+- lawn care providers
+- mobile detailers
+- junk removal operators
+
+MVP GOAL
+Help a user:
+1. create a customer
+2. build an estimate with line items
+3. convert estimate to invoice
+4. mark invoice paid or unpaid
+5. export or share as PDF
+6. save customer and job history
+
+IMPORTANT PRODUCT RULES
+- Do NOT add AI features in version 1
+- Do NOT add accounting, taxes by jurisdiction, payroll, CRM, team management, route optimization, chat, or anything complex
+- Do NOT add anything that could cause App Store review confusion
+- Keep the app very simple, polished, and easy to use on iPhone
+- Build a real working app, not a mockup
+
+TECH / BUILD REQUIREMENTS
+- Use Replit’s recommended native mobile stack for iPhone deployment
+- Make the code clean, modular, and easy to maintain
+- Use local-first storage initially if that is the fastest stable path, but structure the app so cloud sync can be added later
+- If authentication is optional for v1, skip it to reduce friction and speed up launch
+- App must build cleanly with no placeholder screens
+- App must not crash when creating, editing, deleting, converting, or exporting documents
+
+CORE FEATURES
+1. Onboarding
+- Simple first-run onboarding
+- Ask for business name
+- Ask for owner name
+- Ask for phone number
+- Ask for email
+- Ask for business address (optional)
+- Ask for default note text (optional)
+- Save these as business profile settings
+
+2. Dashboard / Home Screen
+- Large buttons:
+  - New Estimate
+  - New Invoice
+  - Customers
+  - History
+  - Settings
+- Show recent documents
+- Show unpaid invoice count
+
+3. Customers
+- Create customer
+- Fields:
+  - full name
+  - company name (optional)
+  - phone
+  - email
+  - service address
+  - billing address (optional)
+  - notes (optional)
+- Customer list should be searchable
+- Tap a customer to see document history
+
+4. Estimate Builder
+- Create estimate quickly
+- Auto-generate estimate number
+- Date + expiration date
+- Select existing customer or create new one inline
+- Add line items:
+  - title
+  - description (optional)
+  - quantity
+  - unit price
+- Auto-calculate subtotal and total
+- Add optional discount as flat amount or percentage
+- Add optional deposit requested
+- Add notes section
+- Add terms section
+- Save draft
+- Duplicate estimate
+- Convert estimate to invoice
+
+5. Invoice Builder
+- Auto-generate invoice number
+- Create from scratch or from estimate
+- Editable status:
+  - draft
+  - sent
+  - paid
+  - unpaid
+  - overdue
+- Add issue date and due date
+- Same line item structure as estimates
+- Show totals clearly
+- Add payment note field
+- Mark paid with payment date
+
+6. PDF Export / Sharing
+- Generate clean professional PDF for estimates and invoices
+- Use business profile branding:
+  - business name
+  - contact info
+- PDF layout must look polished and trustworthy
+- Include:
+  - document title
+  - number
+  - customer info
+  - service address
+  - line items
+  - subtotal
+  - discount
+  - total
+  - notes
+  - terms
+- Allow share sheet export from iPhone
+- Support texting or emailing the PDF through the native share flow
+
+7. History
+- Tabs or filters:
+  - all
+  - estimates
+  - invoices
+  - paid
+  - unpaid
+- Tap to view, edit, duplicate, convert, share, or delete
+
+8. Settings
+- Edit business profile
+- Set default terms
+- Set default notes
+- Set numbering prefixes:
+  - EST-
+  - INV-
+- Toggle simple currency formatting
+- View app version
+- Restore purchases placeholder only if monetization is implemented now
+
+MONETIZATION
+Implement a simple paywall but do not make it block initial use too early.
+
+Free plan:
+- up to 3 estimates total
+- up to 3 invoices total
+- customer history limited to last 5 entries
+
+Pro plan:
+- unlimited estimates
+- unlimited invoices
+- unlimited customers
+- unlimited PDF exports
+- duplicate documents
+- priority templates later
+
+Pricing display:
+- Monthly: $9.99
+- Annual: $59.99
+
+IMPORTANT:
+- Wire the UI so monetization can be enabled cleanly
+- If App Store subscription setup is not ready yet, create a clean internal paywall screen with feature gating and TODO hooks, but do not fake a real purchase flow
+- Make sure the app still works correctly in free mode
+
+DESIGN REQUIREMENTS
+- Clean, modern, trustworthy, simple
+- Designed for outdoor service workers using one hand on a phone
+- Big tap targets
+- Minimal typing where possible
+- Fast data entry
+- Native-feeling iPhone UI
+- No clutter
+- No childish design
+- Use neutral professional colors
+- Make the app feel like a practical business tool
+
+APP STORE SAFETY / APPROVAL REQUIREMENTS
+- No regulated functionality
+- No misleading financial claims
+- No legal/tax advice
+- No health content
+- No hidden features
+- No broken links
+- No placeholder lorem ipsum
+- No references to unsupported features
+- No fake testimonials
+- Include a simple privacy-friendly structure
+- If any permissions are requested, they must be necessary and clearly tied to a feature
+- Avoid requesting unnecessary permissions entirely in v1
+
+CONTENT / COPY
+Use strong but simple in-app wording:
+- "Create estimate"
+- "Convert to invoice"
+- "Mark as paid"
+- "Share PDF"
+- "Customer details"
+- "Job notes"
+- "Payment notes"
+
+Do not use complex accounting jargon.
+
+DATA MODEL
+Create sensible models for:
+- BusinessProfile
+- Customer
+- LineItem
+- Estimate
+- Invoice
+- AppSettings
+- SubscriptionGate state
+
+EDGE CASES TO HANDLE
+- Empty customer fields validation
+- Zero quantity or zero price validation
+- Deleting a customer with document history
+- Converting estimate to invoice without duplication bugs
+- PDF export from edited documents
+- Totals updating correctly after item edits, discounts, and deposits
+- Proper currency formatting throughout
+- No crashes when data is missing or partially entered
+
+OUTPUT I WANT FROM YOU
+After building, provide:
+1. the app architecture summary
+2. the list of screens created
+3. the data models created
+4. the monetization gating logic
+5. the exact files changed
+6. a test checklist for me to run on iPhone before App Store submission
+7. the App Store name, subtitle, keywords, and description draft
+8. a reviewer note for App Store Connect
+9. anything still incomplete or mocked so I know what to fix before submission
+
+IMPORTANT EXECUTION RULE
+Do not ask me broad product questions.
+Make reasonable decisions and build the best polished MVP for fastest App Store approval and fastest path to revenue.
