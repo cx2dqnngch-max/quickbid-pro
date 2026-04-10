@@ -28,7 +28,7 @@ interface Props {
 export function PaywallModal({ visible, onClose, reason }: Props) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
-  const { isPro, isLoading, productPrice, purchase, restorePurchases } = useIAP();
+  const { isPro, isLoading, productPrice, productsLoaded, purchase, restorePurchases } = useIAP();
 
   const handlePurchase = async () => {
     await purchase();
@@ -126,16 +126,19 @@ export function PaywallModal({ visible, onClose, reason }: Props) {
             ))}
           </View>
 
-          {/* Purchase button */}
+          {/* Purchase button — disabled until StoreKit confirms the product */}
           <Pressable
             onPress={handlePurchase}
-            disabled={isLoading}
+            disabled={isLoading || !productsLoaded}
             style={({ pressed }) => [
               styles.purchaseBtn,
-              { backgroundColor: colors.primary, opacity: pressed || isLoading ? 0.85 : 1 },
+              {
+                backgroundColor: colors.primary,
+                opacity: pressed || isLoading || !productsLoaded ? 0.75 : 1,
+              },
             ]}
           >
-            {isLoading ? (
+            {isLoading || !productsLoaded ? (
               <ActivityIndicator color="#fff" />
             ) : (
               <Text style={styles.purchaseBtnText}>
